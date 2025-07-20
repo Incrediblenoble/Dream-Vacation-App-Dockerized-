@@ -1,44 +1,95 @@
-# Dream Vacation Destinations
+# 🌴 Dream Vacation App — Dockerized Full-Stack Project
 
-This application allows users to create a list of countries they'd like to visit, providing basic information about each country. The project is structured to mimic a real-life production environment, employing best practices in software development, deployment, and continuous integration/continuous delivery (CI/CD).
+This project focuses on containerizing a full-stack web application using **Docker** and **Docker Compose**. The application comprises:
 
-## Setup
+- 🌐 **React frontend**
+- ⚙️ **Node.js backend**
+- 🗄️ **PostgreSQL database**
 
-### Backend
-1. Navigate to the `backend` directory.
-2. Run `npm install` to install dependencies.
-3. Set up your PostgreSQL database and update the `.env` file with your database URL.
-4. Run `npm start` to start the server.
+---
 
-### Frontend
-1. Navigate to the `frontend` directory.
-2. Run `npm install` to install dependencies.
-3. Update the `.env` file with your API URL (e.g., `REACT_APP_API_URL=http://localhost:3001`).
-4. Run `npm start` to start the React development server.
+## 🛠️ What Was Done
 
-## Features
-- **Add Countries**: Users can add countries to their dream vacation list.
-- **View Country Details**: Displays capital, population, and region information for each country.
-- **Remove Countries**: Users can remove countries from their list.
-- **Production-Ready Setup**: The project is designed to be scalable and maintainable, following industry-standard practices for deployment and CI/CD.
+- Existing code for frontend and backend was provided
+- Created `Dockerfile` for:
+  - Frontend (React with Nginx)
+  - Backend (Node.js with Express)
+- Created `docker-compose.yml` to orchestrate services
+- Added `.env` file for managing environment variables
+- Added `.gitignore` to exclude `.env` and `node_modules`
+- Created repositories:
+  - [`dream-vacation-frontend`](#)
+  - [`dream-vacation-backend`](#)
 
-## Roadmap
-- **CI/CD Implementation**: Automate the build, test, and deployment process using industry-standard CI/CD tools.
-- **Infrastructure as Code (IaC)**: Implement IaC for automated environment setup and management.
-- **Scalability**: Enhance the application to support multiple environments (staging, production) with proper domain names and configurations.
-- **Security**: Utilize Kubernetes Secrets and environment variables for secure data management.
-- **Microservices**: Modularize the application into microservices to improve maintainability and scalability.
+---
 
-## Technologies Used
-- **Frontend**: React
-- **Backend**: Node.js with Express
-- **Database**: PostgreSQL
-- **External API**: REST Countries API
-- **CI/CD**: To be implemented with [CI/CD tools, e.g., GitHub Actions, Jenkins, or Azure DevOps]
-- **Infrastructure as Code**: To be implemented with tools like Terraform or Helm
+## 📦 Docker Workflow
 
-## Best Practices
-- **Version Control**: All changes are tracked in Git for collaboration and history management.
-- **Environment Management**: Separate configurations for different environments (development, staging, production) using environment variables.
-- **Security**: Sensitive information is managed using environment variables and Kubernetes Secrets.
-- **Documentation**: The project is well-documented to facilitate onboarding and maintenance.
+1. **Build Images:**
+   ```bash
+   docker build -t incrediblenoble08/dream-vacation-frontend ./frontend
+   docker build -t incrediblenoble08/dream-vacation-backend ./backend
+
+2. **Push Images to Docker Hub:**
+    docker push aiyus/dream-vacation-frontend
+    docker push aiyus/dream-vacation-backend
+
+
+3. **Start Services:**
+    docker-compose up -d
+
+**👀 Terminal & Frontend Screenshots**
+
+**📁 Project Structure**
+Dream-Vacation-App/
+├── frontend/           # React app
+│   └── Dockerfile      # Multi-stage build with Nginx
+├── backend/            # Node.js + Express API
+│   └── Dockerfile      # Runs on Node 16/18
+├── .env                # Environment variables (NOT pushed)
+├── .gitignore          # Ignores .env and node_modules
+├── docker-compose.yml  # Orchestrates services
+└── README.md
+
+
+**🚀 Usage**
+
+**1. Clone the repository:**
+
+git clone https://github.com/your-username/Dream-Vacation-App.git
+cd Dream-Vacation-App
+
+**2. Create a .env file:**
+POSTGRES_DB=vacation_db
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=secret123
+DB_HOST=db
+DB_PORT=5432
+PORT=5000
+
+**3. Start the application:**
+docker-compose up --build
+
+**4. Access services:**
+Frontend: http://localhost:3000
+
+Backend: http://localhost:5000
+
+PostgreSQL: localhost:5432
+
+**📤 Pushed Docker Images**
+Frontend: docker.io/your-username/dream-vacation-frontend
+
+Backend: docker.io/your-username/dream-vacation-backend
+
+**✅ Features**
+⚙️ Multi-stage builds for optimized frontend
+
+🧩 Modular architecture with separate services
+
+🔐 Secure environment configuration via .env
+
+💾 PostgreSQL data persistence with Docker volumes
+
+📦 Ready for local and production deployment
+
