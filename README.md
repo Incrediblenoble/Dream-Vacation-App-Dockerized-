@@ -42,11 +42,14 @@ This project focuses on containerizing a full-stack web application using **Dock
 
 **📁 Project Structure**
 Dream-Vacation-App/
+│
 ├── frontend/           # React app
 │   └── Dockerfile      # Multi-stage build with Nginx
+│
 ├── backend/            # Node.js + Express API
 │   └── Dockerfile      # Runs on Node 16/18
-├── .env                # Environment variables (NOT pushed)
+│
+├── .env                # Environment variables (NOT pushed to GitHub)
 ├── .gitignore          # Ignores .env and node_modules
 ├── docker-compose.yml  # Orchestrates services
 └── README.md
