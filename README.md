@@ -20,6 +20,7 @@ This project focuses on containerizing a full-stack web application using **Dock
 - Created repositories:
   - [`dream-vacation-frontend`](#)
   - [`dream-vacation-backend`](#)
+<img width="1600" height="900" alt="Screenshot (398)" src="https://github.com/user-attachments/assets/17f7fd18-943b-4e5f-9602-b8918c503de2" />
 
 ---
 
