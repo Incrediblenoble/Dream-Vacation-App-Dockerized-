@@ -78,9 +78,10 @@ Backend: http://localhost:5000
 PostgreSQL: localhost:5432
 
 **📤 Pushed Docker Images**
-Frontend: docker.io/your-username/dream-vacation-frontend
 
-Backend: docker.io/your-username/dream-vacation-backend
+Frontend: docker.io/incrediblenoble08/dream-vacation-frontend
+
+Backend: docker.io/incrediblenoble08/dream-vacation-backend
 
 **✅ Features**
 ⚙️ Multi-stage builds for optimized frontend
