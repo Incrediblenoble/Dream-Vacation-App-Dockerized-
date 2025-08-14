@@ -52,7 +52,7 @@ function App() {
           required
         />
         <button type="submit">Add Destination</button>
-        <p>Trying to trigger the git workflow</p>
+        <p>Trying to trigger the git workflow, trigger! trigger! trigger!!!</p>
       </form>
       <ul>
         {destinations.map((dest) => (
