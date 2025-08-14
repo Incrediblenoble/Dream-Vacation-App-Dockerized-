@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
 
 function App() {
   const [destinations, setDestinations] = useState([]);
-  const [country, setCountry] = useState('');
+  const [country, setCountry] = useState("");
 
   useEffect(() => {
     fetchDestinations();
@@ -16,7 +16,7 @@ function App() {
       const response = await axios.get(`${API_URL}/api/destinations`);
       setDestinations(response.data);
     } catch (error) {
-      console.error('Error fetching destinations:', error);
+      console.error("Error fetching destinations:", error);
     }
   };
 
@@ -24,10 +24,10 @@ function App() {
     e.preventDefault();
     try {
       await axios.post(`${API_URL}/api/destinations`, { country });
-      setCountry('');
+      setCountry("");
       fetchDestinations();
     } catch (error) {
-      console.error('Error adding destination:', error);
+      console.error("Error adding destination:", error);
     }
   };
 
@@ -36,7 +36,7 @@ function App() {
       await axios.delete(`${API_URL}/api/destinations/${id}`);
       fetchDestinations();
     } catch (error) {
-      console.error('Error deleting destination:', error);
+      console.error("Error deleting destination:", error);
     }
   };
 
@@ -52,6 +52,7 @@ function App() {
           required
         />
         <button type="submit">Add Destination</button>
+        <p>Trying to trigger the git workflow</p>
       </form>
       <ul>
         {destinations.map((dest) => (
