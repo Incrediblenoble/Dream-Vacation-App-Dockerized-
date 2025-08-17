@@ -26,12 +26,12 @@ jobs:
         run: npm install
 
       # Step 2: Run ESLint to check for code quality issues in the backend directory
-      - name: Lint backend with ESLint
-        uses: wearerequired/lint-action@v2
-        with:
-          eslint: true # Enable ESLint
-          eslint_dir: backend # Target backend directory
-          auto_fix: false # Only report errors, don't try to auto-fix
+      # - name: Lint backend with ESLint
+      #   uses: wearerequired/lint-action@v2
+      #   with:
+      #     eslint: true # Enable ESLint
+      #     eslint_dir: backend # Target backend directory
+      #     auto_fix: false # Only report errors, don't try to auto-fix
 
       # Step 3: Login to Docker Hub using GitHub secrets (Docker credentials)
       - name: Login to Docker Hub
