@@ -48,9 +48,9 @@ app.delete('/api/destinations/:id', async (req, res) => {
   try {
     await pool.query('DELETE FROM destinations WHERE id = $1', [id]);
     res.status(204).send();
-  } catch (err) {
+  } catch (err) { 
     console.error(err);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: 'Internal server error can be true' });
   }
 });
 
