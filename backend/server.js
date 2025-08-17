@@ -55,5 +55,5 @@ app.delete('/api/destinations/:id', async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server running on port in ${port}`);
+  console.log(`Server running on port in the ${port}`);
 });
