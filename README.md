@@ -1,100 +1,136 @@
-# 🌴 Dream Vacation App — Dockerized Full-Stack Project
+# 🌴 Dream Vacation App — Dockerized Full-Stack Project with CI/CD
 
-This project focuses on containerizing a full-stack web application using **Docker** and **Docker Compose**. The application comprises:
+This project containerizes a full-stack web application using **Docker**, **Docker Compose**, and integrates **CI/CD pipelines** via **GitHub Actions**.
 
-- 🌐 **React frontend**
-- ⚙️ **Node.js backend**
-- 🗄️ **PostgreSQL database**
+---
+
+## 🧩 Tech Stack
+
+- **Frontend**: React + Nginx
+- **Backend**: Node.js + Express
+- **Database**: PostgreSQL
+- **Containerization**: Docker & Docker Compose
+- **CI/CD**: GitHub Actions
 
 ---
 
 ## 🛠️ What Was Done
 
-- Existing code for frontend and backend was provided
 - Created `Dockerfile` for:
-  - Frontend (React with Nginx)
-  - Backend (Node.js with Express)
+  - Frontend (React + Nginx)
+  - Backend (Node.js + Express)
 - Created `docker-compose.yml` to orchestrate services
-- Added `.env` file for managing environment variables
-- Added `.gitignore` to exclude `.env` and `node_modules`
-- Created repositories:
-  - [`dream-vacation-frontend`](#)
-  - [`dream-vacation-backend`](#)
-    <img width="1600" height="900" alt="Screenshot (398)" src="https://github.com/user-attachments/assets/17f7fd18-943b-4e5f-9602-b8918c503de2" />
+- Added `.env` for managing environment variables
+- Configured `.gitignore` to exclude `.env` and `node_modules`
+- Implemented CI/CD workflows:
+  - `.github/workflows/frontend.yml`
+  - `.github/workflows/backend.yml`
+
+---
+
+## ⚙️ CI/CD Workflow Overview
+
+CI/CD is powered by **GitHub Actions**, automating build and deployment to Docker Hub on every push to the `dev` branch.
+
+### 🔧 Frontend Workflow (`Dream-Frontend CI/CD`)
+
+**Trigger**: Push to `dev` branch with changes in `frontend/` directory.
+
+**Steps**:
+
+1. Checkout code using `actions/checkout@v3`
+2. Set up Node.js (v18) using `actions/setup-node@v4`
+3. Install dependencies with `npm install`
+4. *(Optional)* Run ESLint for code quality
+5. Login to Docker Hub using `docker/login-action@v3` and GitHub secrets
+6. Set up Docker Buildx using `docker/setup-buildx-action@v3`
+7. Build and push Docker image using `docker/build-push-action@v6`
+   - Tag: `${{ secrets.DOCKER_USERNAME }}/dream-frontend:${{ github.sha }}`
+   - Context: `frontend/`
+   - Dockerfile: `frontend/Dockerfile`
+
+### 🔧 Backend Workflow (`Dream-Backend CI/CD`)
+
+**Trigger**: Push to `dev` branch with changes in `backend/` directory.
+
+**Steps**:
+
+1. Checkout code using `actions/checkout@v3`
+2. Set up Node.js (v18) using `actions/setup-node@v4`
+3. Install dependencies with `npm install`
+4. *(Optional)* Run ESLint for code quality
+5. Login to Docker Hub using `docker/login-action@v3` and GitHub secrets
+6. Set up Docker Buildx using `docker/setup-buildx-action@v3`
+7. Build and push Docker image using `docker/build-push-action@v6`
+   - Tag: `${{ secrets.DOCKER_USERNAME }}/dream-backend:${{ github.sha }}`
+   - Context: `backend/`
+   - Dockerfile: `backend/Dockerfile`
 
 ---
 
 ## 📦 Docker Workflow
 
-1. **Build Images:**
+### 🔨 Build Images Locally
 
-   ```bash
-   docker build -t incrediblenoble08/dream-vacation-frontend ./frontend
-   docker build -t incrediblenoble08/dream-vacation-backend ./backend
+```bash
+docker build -t incrediblenoble08/dream-vacation-frontend ./frontend
+docker build -t incrediblenoble08/dream-vacation-backend ./backend
 
-   ```
+## 🚀 Push to Docker Hub
 
-2. **Push Images to Docker Hub:**
-   docker push aiyus/dream-vacation-frontend
-   docker push aiyus/dream-vacation-backend
+docker push incrediblenoble08/dream-vacation-frontend
+docker push incrediblenoble08/dream-vacation-backend
 
-3. **Start Services:**
-   docker-compose up -d
-   <img width="635" height="365" alt="Screenshot (387)" src="https://github.com/user-attachments/assets/132106eb-92dd-43a5-ab8e-1ef32f6244e1" />
+## ▶️ Start Services
+docker-compose up -d
 
-**👀 Terminal & Frontend Screenshots**
-<img width="1600" height="843" alt="Screenshot (383)" src="https://github.com/user-attachments/assets/159b9ced-f5be-444b-bbca-5a44b230d5a1" />
-<img width="1600" height="864" alt="Screenshot (384)" src="https://github.com/user-attachments/assets/fdb6790b-a4d4-4fc8-b6b9-c0778b260b90" />
-<img width="1600" height="855" alt="Screenshot (392)" src="https://github.com/user-attachments/assets/46fc1e15-5ef3-4607-b723-4a3ac5dbe75d" />
-<img width="1600" height="845" alt="Screenshot (395)" src="https://github.com/user-attachments/assets/52e426a0-9ee4-4725-84d6-1143f1d06b7e" />
-<img width="1600" height="861" alt="Screenshot (396)" src="https://github.com/user-attachments/assets/fe02af80-ac72-45c5-b24f-a73e97ebd8a9" />
-
-**📁 Project Structure**
-Dream-Vacation-App/
+## Dream-Vacation-App/
 │
-├── frontend/ # React app
-│ └── Dockerfile # Multi-stage build with Nginx
+├── frontend/               # React app
+│   └── Dockerfile          # Multi-stage build with Nginx
 │
-├── backend/ # Node.js + Express API
-│ └── Dockerfile # Runs on Node 16/18
+├── backend/                # Node.js + Express API
+│   └── Dockerfile          # Runs on Node 16/18
 │
-├── .env # Environment variables (NOT pushed to GitHub)
-├── .gitignore # Ignores .env and node_modules
-├── docker-compose.yml # Orchestrates services
+├── .env                    # Environment variables (excluded from Git)
+├── .gitignore              # Ignores .env and node_modules
+├── docker-compose.yml      # Orchestrates services
+├── .github/
+│   └── workflows/
+│       ├── frontend.yml    # CI/CD for frontend
+│       └── backend.yml     # CI/CD for backend
 └── README.md
 
-**🚀 Usage**
-
-**1. Clone the repository:**
-
+## 🚀 Usage
+1. Clone the Repository
 git clone https://github.com/your-username/Dream-Vacation-App.git
 cd Dream-Vacation-App
 
-**2. Create a .env file:**
-POSTGRES_DB=vacation_db
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=secret123
-DB_HOST=db
-DB_PORT=5432
-PORT=5000
+2. Create a .env File
+POSTGRES_DB=
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+DB_HOST=
+DB_PORT=
+PORT=
 
-**3. Start the application:**
+3. Start the Application
 docker-compose up --build
 
-**4. Access services:**
+4. Access Services
 Frontend: http://localhost:3000
 
 Backend: http://localhost:5000
 
 PostgreSQL: localhost:5432
 
-**📤 Pushed Docker Images**
 
+📤 Docker Hub Images
 Frontend: docker.io/incrediblenoble08/dream-vacation-frontend
 
 Backend: docker.io/incrediblenoble08/dream-vacation-backend
 
-**✅ Features**
+✅ Features
 ⚙️ Multi-stage builds for optimized frontend
 
 🧩 Modular architecture with separate services
@@ -103,4 +139,4 @@ Backend: docker.io/incrediblenoble08/dream-vacation-backend
 
 💾 PostgreSQL data persistence with Docker volumes
 
-📦 Ready for local and production deployment
+🚀 Automated CI/CD pipelines for seamless deployment
